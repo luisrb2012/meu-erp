@@ -14,7 +14,7 @@ const pool = new Pool({
     host: process.env.DB_HOST,
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT, // Removido o parseInt para maior robustez
+    port: parseInt(process.env.DB_PORT, 10) || 5432,
 });
 
 // --- MIDDLEWARES ---
@@ -116,7 +116,6 @@ createCrudRoutes(app, 'revenues', pool);
 createCrudRoutes(app, 'invoicings', pool);
 createCrudRoutes(app, 'cashmovements', pool);
 createCrudRoutes(app, 'allocationrules', pool);
-app
 
 // --- ROTAS COM LÓGICA CUSTOMIZADA E TRANSAÇÕES ---
 
